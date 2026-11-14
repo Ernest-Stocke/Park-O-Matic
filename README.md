@@ -1,3 +1,4 @@
+
 # Park-O-Matic (Swing + SQL edition)
 
 Java Swing parking management system with a SQL database, admin / employee login,
@@ -96,3 +97,7 @@ The tests use an in-memory repository, so they do not exercise the SQL code.
 | GUI      | `Main`, `LoginFrame`, `MainFrame`, `SlotsPanel`, `OperationsPanel`, `BookingsPanel`, `BillsPanel`, `AdminPanel`, `Ui` |
 
 The old console UI (`ConsoleUI`) has been replaced by the Swing GUI.
+
+# PARK-O-MATIC
+## An Intelligent Parking Resource Allocation and Management System
+
