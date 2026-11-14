@@ -1,0 +1,23 @@
+# compiled output
+*.class
+out/
+out-test/
+
+# local database (contains your data and password hashes)
+*.db
+
+# real DB credentials (keep only db.properties.example in git)
+db.properties
+
+# downloaded driver jars (see lib/README.txt)
+*.jar
+
+# editor / OS files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+
+# test screenshots / CSV exports
+shots/
+*.csv
