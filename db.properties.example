@@ -1,0 +1,5 @@
+# Copy to db.properties to override the default (SQLite file parkomatic.db in the working folder).
+# MySQL / MariaDB example (create the database first: CREATE DATABASE parkomatic;)
+db.url=jdbc:mysql://localhost:3306/parkomatic
+db.user=root
+db.password=your_password_here
