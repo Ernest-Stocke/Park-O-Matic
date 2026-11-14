@@ -45,29 +45,10 @@ parkomatic/
 Dependencies only point one way: `ui -> service -> repository / model / util`.
 The GUI never touches SQL, and the services never touch Swing.
 
-## 1. Run it (SQLite, no server needed)
-
-You need JDK 11 or newer.
-
-1. Download `sqlite-jdbc-<version>.jar` from https://github.com/xerial/sqlite-jdbc/releases and put it in `lib/`.
-   If you see `NoClassDefFoundError: org/slf4j/...`, also put `slf4j-api-<version>.jar` in `lib/`.
-2. Start the app:
 
 ```
-Mac / Linux:   ./run.sh        (first time: chmod +x build.sh run.sh test.sh)
-Windows:       run.bat
-```
 
-A file `parkomatic.db` is created in the project folder on first run. Delete it to start from scratch.
-
-Manual commands, if you prefer:
-
-```
-javac -d out $(find src/main -name "*.java")
-java -cp "out:lib/*" com.parkomatic.Main            (Windows: java -cp "out;lib\*" com.parkomatic.Main)
-```
-
-## 2. Default logins (first run only)
+## 1. Default logins (first run only)
 
 | Username   | Password      | Role     |
 |------------|---------------|----------|
@@ -77,7 +58,7 @@ java -cp "out:lib/*" com.parkomatic.Main            (Windows: java -cp "out;lib\
 Change both passwords straight away (Change my password button, or Admin tab > Reset password).
 Passwords are stored as salted PBKDF2 hashes, never as plain text.
 
-## 3. What each role can do
+## 2. What each role can do
 
 | Feature                                            | Employee | Admin |
 |----------------------------------------------------|:--------:|:-----:|
@@ -97,7 +78,7 @@ minimum of one hour.
 Slot IDs: `C01..` cars, `B01..` bikes, `V01..` VIP, `E01..` emergency.
 Reducing a slot count removes the highest-numbered slots and is refused if any of them is occupied.
 
-## 4. Licence plate validation
+## 3. Licence plate validation
 
 `PlateValidator` accepts (spaces, hyphens and lower case are fine):
 
@@ -108,24 +89,3 @@ Reducing a slot count removes the highest-numbered slots and is refused if any o
 It checks the **format only**. It cannot tell whether the plate is really issued, and it does not accept
 temporary, diplomatic or military formats.
 
-## 5. Using MySQL / MariaDB instead
-
-1. Create an empty database: `CREATE DATABASE parkomatic;`
-2. Put the MySQL Connector/J jar in `lib/`.
-3. Copy `db.properties.example` to `db.properties` and fill in the URL, user and password.
-4. Run as normal. Tables are created automatically (see `docs/schema.sql`).
-
-## 6. Tests
-
-```
-./test.sh        # logic tests, no database or display needed
-```
-
-GUI smoke test (builds the real windows and saves screenshots; needs a display, e.g. `xvfb-run` on Linux):
-
-```
-javac -d out-test $(find src/main src/test -name "*.java")
-xvfb-run java -cp out-test com.parkomatic.ui.GuiSmokeTest shots/
-```
-
-The tests use an in-memory repository, so they do not exercise the SQL code in `JdbcRepository`.
